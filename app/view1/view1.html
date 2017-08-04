@@ -1,0 +1,68 @@
+<p>This is the partial for view 1.</p>
+
+<div class="paragraph center" style="padding:1em 1em; border-top:solid 1px #ddd; border-bottom:solid 1px #ddd;">
+
+  <button ng-click="printNewReport()"  type="button" id="tnTops" class="arButton" style="width:150px; margin-bottom:2px;"  >Print TOPS Report </button>
+  <br/>
+
+  <button ng-click="print2ndReport()"  type="button" id="tn2ndReport" class="arButton" style="width:150px; margin-bottom:2px;"  >Print 2nd Report </button>
+  <br/>
+  <img id="imageId" src="images/sampleImage.jpg" value="test"/>
+  <button ng-click="convertingImageToBase64()"  type="button" id="btnTops" class="arButton" style="width:150px; margin-bottom:2px;">Image Convert To Base64 </button>
+
+
+
+  <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
+  <div id="imgTest"></div>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+  <script type='text/javascript'>
+    $(document).ready(function(){
+
+      function encodeImageFileAsURL(){
+
+        var filesSelected = document.getElementById("inputFileToLoad").files;
+        if (filesSelected.length > 0)
+        {
+          var fileToLoad = filesSelected[0];
+
+          var fileReader = new FileReader();
+
+          fileReader.onload = function(fileLoadedEvent) {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
+
+            document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+            alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+            console.log("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+          }
+          fileReader.readAsDataURL(fileToLoad);
+        }
+      }
+
+
+
+    });
+
+  </script>
+
+  <br/>
+
+  <p>$document title: <b ng-bind="title"></b></p>
+  <p>window.document title: <b ng-bind="windowTitle"></b></p>
+
+
+  <p> Magic Tree Source : <b ng-bind ="magictree.src"></b></p>
+  <p> Magic Tree Source : <b ng-bind ="magictree.width"></b></p>
+  <p> Magic Tree Source : <b ng-bind ="magictree.height"></b></p>
+
+  <br/>
+
+
+  <div style="display : inline;" >
+    <label> <input type="radio" value=""> L1</label> <label> <input type="radio" value=""> L2</label><label> <input type="radio" value=""> L3</label> <label> <input type="radio" value=""> L4</label><label> <input type="radio" value=""> Non fiction</label></br>
+  </div>
+
+</div>
